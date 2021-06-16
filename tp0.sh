@@ -30,8 +30,12 @@ fi
 $AWSBIN s3 cp $FULLPATHSRC1 s3://bkttpgb0001/home-$backupdate.tar.gz
 $AWSBIN s3 cp $FULLPATHSRC2 s3://bkttpgb0001/home-$backupdate-test1.tar.gz
 
-#cycle de vie du fichier de + de 7j
+#test si cycle de vie du fichier de + de 7j en position
+$AWSBIN s3api get-bucket-lifecycle --bucket $BUCKETNAME
+if [ $? = 1 ]; then
 $AWSBIN s3api put-bucket-lifecycle --bucket $BUCKETNAME --lifecycle-configuration file://s3ruledel.json
+fi
+
 
 #suppresion + de 7j
 #find S3PATH/*..tar.gz -mtime +7|xargs rm -f {} ;
