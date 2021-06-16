@@ -27,8 +27,8 @@ if [ $? = 1 ]; then
 fi
 
 #AWS UP du fichier
-$AWSBIN s3 cp $FULLPATHSRC1 s3://bkttpgb0001/home-$backupdate.tar.gz
-$AWSBIN s3 cp $FULLPATHSRC2 s3://bkttpgb0001/home-$backupdate-test1.tar.gz
+$AWSBIN s3 cp $FULLPATHSRC1 s3://$BUCKETNAME/home-$backupdate.tar.gz
+$AWSBIN s3 cp $FULLPATHSRC2 s3://$BUCKETNAME/home-$backupdate-test1.tar.gz
 
 #test si cycle de vie du fichier de + de 7j en position
 $AWSBIN s3api get-bucket-lifecycle --bucket $BUCKETNAME
